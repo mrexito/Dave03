@@ -1,8 +1,8 @@
-import type { Metadata } from "next";
-import getAllUsers from "../../lib/getAllUsers";
+
+import getAllUsers from "@/lib/getAllUsers";
 import Link from "next/link";
 
-export const metadata: Metadata = {
+export const metadata = {
   title: "Users"
 }
 
@@ -19,10 +19,10 @@ export default async function UsersPage() {
       <br />
       {users.map( user => {
         return (
-          <>
-              <Link key={user.id} href={`/users/${user.id}`}>{user.name}</Link>
-              <br/>
-          </>
+          <li key = {user.id}>
+            <Link href={`/users/${user.id}`}>{user.name}</Link>
+            <br/>
+          </li>
         )
       })}
     </section>
