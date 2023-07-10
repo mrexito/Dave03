@@ -10,6 +10,11 @@ type Params = {
   }
 }
 
+/**
+ * Generate the metadata for the page
+ * @param {Params} params
+ * @returns {Promise<Metadata>}
+ */
 export async function generateMetadata({ params: { userId } }: Params):
   Promise< Metadata > {
   const userData: Promise<User> = getUser(userId)
@@ -21,12 +26,15 @@ export async function generateMetadata({ params: { userId } }: Params):
   }
 }
 
+/**
+ * Render the user page
+ * @param {Params} params
+ * @returns {JSX.Element}
+ */
 export default async function UserPage({ params: { userId }}: Params) {
   const userData: Promise<User> = getUser(userId)
   const userPostsData: Promise<Post[]> = getUserPosts(userId)
-
-  //const [user,userPosts] = await Promise.all([userData, userPostsData])
-
+  
   const user = await userData
   return (
     <>
@@ -39,3 +47,5 @@ export default async function UserPage({ params: { userId }}: Params) {
     </>
   )
 }
+
+ //const [user,userPosts] = await Promise.all([userData, userPostsData])
